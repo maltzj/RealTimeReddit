@@ -3,7 +3,7 @@ var reddit = require("./redditRequest.js");
 
 function startServer(callback){
 		var server = http.createServer(function(request, response){
-				reddit.makeRequest(function(){});
+				reddit.update('pics');
 				response.writeHead('200');
 				response.write('Success');
 				response.end();
@@ -11,6 +11,5 @@ function startServer(callback){
 		server.listen(8080);
 		console.log("listening");
 }
-
 
 exports.start = startServer;
