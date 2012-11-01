@@ -1,6 +1,8 @@
 var request = require("request");
 
 var recentPosts = {};
+var webSockets = null;
+
 
 function update(subreddit){
 		
@@ -48,4 +50,9 @@ function updateRecentPosts(subreddit, posts){
 		console.log(recentPosts[subreddit][0].title);
 }
 
+function getRecentPosts(subreddit){
+		return recentPosts[subreddit] != undefined ? recentPosts[subreddit]: [];
+}
+
 exports.update = update;
+exports.getPosts = getRecentPosts;
