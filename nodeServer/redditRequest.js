@@ -1,7 +1,6 @@
 var request = require("request");
-
+var ioModule = require("./sockets");
 var recentPosts = {};
-var webSockets = null;
 
 
 function update(subreddit){
@@ -23,34 +22,36 @@ function updateRecentPosts(subreddit, posts){
 		console.log("posts' length is " + posts.length);
 		var postInformation = [];
 
-		if(currentPosts == undefined){
+		if(currentPosts == undefined){ //if this is the first time getting posts for this subreddit
 				recentPosts[subreddit] = posts;
 				return;
 		}
 		
-		for(var i = 0; i<posts.length; i++){
+		for(var i = 0; i<posts.length; i++){//get any new posts
+				
 				if(currentPosts[0].permalink == posts[i].data.permalink){
 						break;
 				}
+
 				var postToAdd = {'url': posts[i].data.url,
 												 'thumbnail': posts[i].data.thumbnail,
 												 'title': posts[i].data.title,
 												 'permalink': posts[i].data.permalink};
 				postInformation.push(postToAdd);				
+
 		}
 
-		for(var i = 0; i<posts.length; i++){
-				console.log("in posts title is " + posts[i].data.title);
+		if(postInformation.length != 0){ //emit the new posts to the sockets
+				ioModule.emit({'newMessages': postInformation})
 		}
-		
 
-		currentPosts.splice(25 - postInformation.length, postInformation.length);
-		postInformation.push.apply(postInformation, currentPosts);
+		currentPosts.splice(25 - postInformation.length, postInformation.length); //trim the array down to only 25
+		postInformation.push.apply(postInformation, currentPosts); //apply all of the old posts to the new posts
 		recentPosts[subreddit] = postInformation;
 		console.log(recentPosts[subreddit][0].title);
 }
 
-function getRecentPosts(subreddit){
+function getRecentPosts(subreddit){ //gets all the recent posts for a subreddit
 		return recentPosts[subreddit] != undefined ? recentPosts[subreddit]: [];
 }
 

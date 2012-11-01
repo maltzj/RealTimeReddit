@@ -1,5 +1,5 @@
 var http = require("http");
-var ioModule = require("./socket");
+var ioModule = require("./sockets");
 function startServer(callback){
 		var server = http.createServer(function(request, response){
 				response.writeHead('200');

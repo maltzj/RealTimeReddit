@@ -1,6 +1,5 @@
 var io = require("socket.io");
 
-io.sockets.on('connection', onClientReceived);
 
 function onClientReceived(socket){
 		//not quite sure what this will be doing yet
@@ -11,7 +10,8 @@ function emitToSockets(message){
 }
 
 function listenOnServer(server){
-		io.listen(server);
+		var ioServer = io.listen(server);
+		ioServer.sockets.on('connection', onClientReceived);
 }
 
 exports.listen = listenOnServer;
