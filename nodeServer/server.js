@@ -1,15 +1,13 @@
 var http = require("http");
-var reddit = require("./redditRequest.js");
-
+var ioModule = require("./socket");
 function startServer(callback){
 		var server = http.createServer(function(request, response){
-				reddit.update('pics');
 				response.writeHead('200');
 				response.write('Success');
 				response.end();
 		});
+		ioModule.listen(server);
 		server.listen(8080);
-		console.log("listening");
 }
 
 exports.start = startServer;
