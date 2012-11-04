@@ -42,7 +42,7 @@ function updateRecentPosts(subreddit, posts){
 		}
 
 		if(postInformation.length != 0){ //emit the new posts to the sockets
-				ioModule.emit({'newMessages': postInformation})
+				ioModule.emitMessage({'newMessages': postInformation})
 		}
 
 		currentPosts.splice(25 - postInformation.length, postInformation.length); //trim the array down to only 25

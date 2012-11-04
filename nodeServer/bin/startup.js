@@ -1,9 +1,11 @@
 var cronJob = require('cron').CronJob;
 var config = require('../config').config;
 var redditObj = require('../redditRequest');
+var server = require("../server");
 
 var subreddits = config.testSubreddits;
 
+server.start(function(){});
 
 for(var i = 0; i< subreddits.length; i++){ //for all the of the subreddits that we want to test
 		var cronOptions = {
