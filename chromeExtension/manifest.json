@@ -1,0 +1,14 @@
+{
+        "name": "Real Time Reddit",
+        "version": "1.0",
+        "manifest_version": 2,
+        "content_scripts" : [
+        {
+                "matches": ["http://*/*", "https://*/*"],
+                "css": [],
+                "js": ["jquery-1.8.0.min.js", "bootstrap.min.js"],
+                "run_at": "document_end"
+        }        
+        ],
+       
+}
