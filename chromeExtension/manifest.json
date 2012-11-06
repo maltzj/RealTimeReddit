@@ -6,5 +6,5 @@
                      "persistent": true,
                      "page": "background.html"
 },
-        "permissions" : "notifications"
+        "permissions" : ["notifications"]
 }

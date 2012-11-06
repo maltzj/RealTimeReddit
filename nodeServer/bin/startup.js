@@ -1,5 +1,5 @@
 var cronJob = require('cron').CronJob;
-var config = require('../config').config;
+var config = require('../config/config').config;
 var redditObj = require('../redditRequest');
 var server = require("../server");
 
