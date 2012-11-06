@@ -10,8 +10,7 @@ function emitToSockets(message){
 }
 
 function listenOnServer(server){
-		ioServer = io.listen(server);
-		ioServer.set('origins', '*');
+		ioServer = io.listen(server, {'origins': '*:*'});
 		ioServer.sockets.on('connection', onClientReceived);
 }
 
