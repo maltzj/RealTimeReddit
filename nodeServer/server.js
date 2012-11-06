@@ -1,9 +1,19 @@
-var http = require("http");
+var https = require("https");
 var ioModule = require("./sockets");
 var fs = require("fs");
+var config = require("./config/config").config;
 
 function startServer(callback){
-		var server = http.createServer(function(request, response){
+
+		console.log(config.privateKey);
+		
+		var options = {
+				key: config.privateKey,
+				cert: config.certificate,
+				requestCert: false
+		};
+
+		var server = https.createServer(options, function(request, response){
 				fs.readFile(__dirname + '/index.html', function(error, data){
 						if(error){
 								response.writeHead('500');

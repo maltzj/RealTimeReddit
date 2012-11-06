@@ -1,5 +1,4 @@
 var io = require("socket.io");
-
 var ioServer = undefined;
 
 function onClientReceived(socket){
@@ -12,6 +11,7 @@ function emitToSockets(message){
 
 function listenOnServer(server){
 		ioServer = io.listen(server);
+		ioServer.set('origins', '*');
 		ioServer.sockets.on('connection', onClientReceived);
 }
 

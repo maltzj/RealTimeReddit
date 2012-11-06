@@ -6,5 +6,6 @@
                      "persistent": true,
                      "page": "background.html"
 },
-        "permissions" : ["notifications"]
+        "permissions" : ["notifications"],
+        "content_security_policy" : "script-src 'self' https://localhost:8080/socket.io/socket.io.js; object-src 'self'"
 }
