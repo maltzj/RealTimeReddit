@@ -6,7 +6,9 @@ function onClientReceived(socket){
 }
 
 function emitToSockets(message){
-		ioServer.sockets.emit('update', message);
+		if(ioServer != undefined){
+				ioServer.sockets.emit('update', message);
+		}
 }
 
 function listenOnServer(server){
