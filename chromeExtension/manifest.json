@@ -7,5 +7,8 @@
                      "page": "background.html"
 },
         "permissions" : ["notifications"],
-        "content_security_policy" : "script-src 'self' https://localhost:8080/socket.io/socket.io.js; object-src 'self'"
+        "web_accessible_resources" : [
+            "reddit_alien_logo.png"
+            ],
+        "content_security_policy" : "script-src 'self' https://localhost:35000/socket.io/socket.io.js; object-src 'self'"
 }

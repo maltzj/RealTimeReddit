@@ -5,7 +5,7 @@ var server = require("../server");
 
 var subreddits = config.testSubreddits;
 
-server.start(function(){});
+server.start(35000);
 
 for(var i = 0; i< subreddits.length; i++){ //for all the of the subreddits that we want to test
 		var cronOptions = {
@@ -17,7 +17,7 @@ for(var i = 0; i< subreddits.length; i++){ //for all the of the subreddits that 
 		};
 		console.log(subreddits[i]);
 		new cronJob('0/30 * * * * *', 
-								redditUpdateWrapper(subreddits[i]), null, true, "America/Los_Angeles");
+								redditUpdateWrapper(subreddits[i]), null, true);
 }
 
 function redditUpdateJob(subreddit){

@@ -29,14 +29,16 @@ function updateRecentPosts(subreddit, posts){
 		
 		for(var i = 0; i<posts.length; i++){//get any new posts
 				
-				if(currentPosts[0].permalink == posts[i].data.permalink){
+				if(currentPosts.length > 0 && currentPosts[0].permalink == posts[i].data.permalink){
 						break;
 				}
 
-				var postToAdd = {'url': posts[i].data.url,
-												 'thumbnail': posts[i].data.thumbnail,
-												 'title': posts[i].data.title,
-												 'permalink': posts[i].data.permalink};
+				var postToAdd = {
+						'subreddit': subreddit,
+						'url': posts[i].data.url,
+						'title': posts[i].data.title,
+						'permalink': posts[i].data.permalink
+				};
 				postInformation.push(postToAdd);				
 
 		}
@@ -48,7 +50,6 @@ function updateRecentPosts(subreddit, posts){
 		currentPosts.splice(25 - postInformation.length, postInformation.length); //trim the array down to only 25
 		postInformation.push.apply(postInformation, currentPosts); //apply all of the old posts to the new posts
 		recentPosts[subreddit] = postInformation;
-		console.log(recentPosts[subreddit][0].title);
 }
 
 function getRecentPosts(subreddit){ //gets all the recent posts for a subreddit

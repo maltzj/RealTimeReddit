@@ -3,7 +3,7 @@ var ioModule = require("./sockets");
 var fs = require("fs");
 var config = require("./config/config").config;
 
-function startServer(callback){
+function startServer(port){
 
 		console.log(config.privateKey);
 		
@@ -27,7 +27,7 @@ function startServer(callback){
 				});	
 		});
 		ioModule.listen(server);
-		server.listen(8080);
+		server.listen(port);
 }
 
 exports.start = startServer;

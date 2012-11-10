@@ -3,8 +3,7 @@ var crypto = require("crypto");
 
 var config = {};
 
-config.subreddits = ['pics', 'funny', 'videos', 'bestof', 'fffffffuuuuuuuuuuuu', 'askreddit', 'gaming', 'starcraft', 'todayilearned', 'adviceanimals'];
-config.testSubreddits = ['fffffffuuuuuuuuuuuu', 'adviceanimals'];
+config.testSubreddits = ['fffffffuuuuuuuuuuuu', 'WoT', 'programming'];
 
 config.privateKey = fs.readFileSync(__dirname  + '/privatekey.pem');
 config.certificate = fs.readFileSync(__dirname + '/certificate.pem');
